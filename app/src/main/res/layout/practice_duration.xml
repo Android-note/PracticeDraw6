@@ -41,7 +41,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2B2B2B">
+        android:background="@color/background">
 
         <ImageView
             android:id="@+id/imageView"
@@ -59,6 +59,16 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="8dp"
             android:text="@string/animate"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/objectAnimateBt"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_above="@id/animateBt"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:text="@string/objectAnimateBt"
             android:textSize="16sp" />
 
     </RelativeLayout>

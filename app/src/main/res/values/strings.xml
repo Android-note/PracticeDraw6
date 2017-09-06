@@ -36,4 +36,5 @@
         <item>FastOutSlowInInterpolator</item>
         <item>LinearOutSlowInInterpolator</item>
     </string-array>
+    <string name="objectAnimateBt">objectAnimateBt</string>
 </resources>
