@@ -1,5 +1,6 @@
 package com.hencoder.hencoderpracticedraw6.practice;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -11,14 +12,18 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hencoder.hencoderpracticedraw6.R;
+import com.hencoder.hencoderpracticedraw6.Utils;
 
 public class Practice06Duration extends LinearLayout {
     SeekBar durationSb;
     TextView durationValueTv;
-    Button animateBt;
+    Button animateBt, objectAnimateBt;
     ImageView imageView;
 
     int duration = 300;
+
+    int durationStatus = 0;
+    int durationCount = 2;
 
     public Practice06Duration(Context context) {
         super(context);
@@ -59,11 +64,49 @@ public class Practice06Duration extends LinearLayout {
         });
 
         animateBt = (Button) findViewById(R.id.animateBt);
+        objectAnimateBt = (Button) findViewById(R.id.objectAnimateBt);
         imageView = (ImageView) findViewById(R.id.imageView);
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO 在这里处理点击事件，执行动画。记得使用 `setDuration(duration)` 来设置动画的时长。
+                switch (durationStatus) {
+                    case 0:
+                        imageView.animate().setDuration(duration).translationX(Utils.dpToPixel(200));
+                        break;
+                    case 1:
+                        imageView.animate().setDuration(duration).translationX(0);
+                        break;
+                }
+                durationStatus++;
+                if (durationStatus == durationCount) {
+                    durationStatus = 0;
+                }
+            }
+        });
+        objectAnimateBt.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (durationStatus) {
+                    case 0:
+                        ObjectAnimator.ofFloat(
+                                imageView,
+                                "translationX",
+                                Utils.dpToPixel(200)
+                        ).setDuration(duration).start();
+                        break;
+                    case 1:
+                        ObjectAnimator.ofFloat(
+                                imageView,
+                                "translationX",
+                                Utils.dpToPixel(0)
+                        ).setDuration(duration).start();
+                        break;
+                }
+                durationStatus++;
+                if (durationStatus == durationCount) {
+                    durationStatus = 0;
+                }
             }
         });
     }
